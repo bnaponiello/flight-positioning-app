@@ -1,0 +1,11 @@
+target/
+.DS_Store
+
+# Eclipse Core
+.project
+.classpath
+.settings
+
+# IntelliJ
+.idea
+*.iml

@@ -1,0 +1,129 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-aircraft-table
+      author: bnaponiello
+      changes:
+        - createTable:
+            tableName: AIRCRAFT
+            columns:
+              - column:
+                  name: AIRCRAFT_ID
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: NAME
+                  type: varchar(500)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: YEAR
+                  type: int
+              - column:
+                  name: FUEL_CAPACITY
+                  type: numeric(15,2)
+              - column:
+                  name: MANUFACTURER
+                  type: varchar(200)
+              - column:
+                  name: NATIONAL_ORIGIN
+                  type: varchar(200)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: CREATE_DATE
+                  type: date
+                  constraints:
+                    nullable: false
+              - column:
+                  name: UPDATE_DATE
+                  type: date
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: insert-aircrafts
+      author: bnaponiello
+      changes:
+        - insert:
+            tableName: AIRCRAFT
+            columns:
+              - column:
+                  name: AIRCRAFT_ID
+                  value: 1
+              - column:
+                  name: NAME
+                  value: "Embraer E-195"
+              - column:
+                  name: YEAR
+                  value: 1980
+              - column:
+                  name: FUEL_CAPACITY
+                  value: 23.12
+              - column:
+                  name: MANUFACTURER
+                  value: "Embraer"
+              - column:
+                  name: NATIONAL_ORIGIN
+                  value: "Brazil"
+              - column:
+                  name: CREATE_DATE
+                  value: ${now}
+              - column:
+                  name: UPDATE_DATE
+                  value: ${now}
+        - insert:
+            tableName: AIRCRAFT
+            columns:
+              - column:
+                  name: AIRCRAFT_ID
+                  value: 2
+              - column:
+                  name: NAME
+                  value: "Boeing 747"
+              - column:
+                  name: YEAR
+                  value: 1986
+              - column:
+                  name: FUEL_CAPACITY
+                  value: 24.82
+              - column:
+                  name: MANUFACTURER
+                  value: "Boeing"
+              - column:
+                  name: NATIONAL_ORIGIN
+                  value: "United States"
+              - column:
+                  name: CREATE_DATE
+                  value: ${now}
+              - column:
+                  name: UPDATE_DATE
+                  value: ${now}
+        - insert:
+            tableName: AIRCRAFT
+            columns:
+              - column:
+                  name: AIRCRAFT_ID
+                  value: 3
+              - column:
+                  name: NAME
+                  value: "Airbus A320"
+              - column:
+                  name: YEAR
+                  value: 2001
+              - column:
+                  name: FUEL_CAPACITY
+                  value: 31.82
+              - column:
+                  name: MANUFACTURER
+                  value: "Airbus"
+              - column:
+                  name: NATIONAL_ORIGIN
+                  value: "European Union"
+              - column:
+                  name: CREATE_DATE
+                  value: ${now}
+              - column:
+                  name: UPDATE_DATE
+                  value: ${now}

@@ -1,0 +1,269 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-pilot-table
+      author: bnaponiello
+      changes:
+        - createTable:
+            tableName: PILOT
+            columns:
+              - column:
+                  name: PILOT_ID
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: NAME
+                  type: varchar(500)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: NATIONAL_ORIGIN
+                  type: varchar(200)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: LICENSE
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: EMAIL
+                  type: varchar(100)
+              - column:
+                  name: FLIGHT_HOURS
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: FLIGHT_ID
+                  type: int
+                  constraints:
+                    nullable: false
+                    foreignKeyName: FK_PILOT_FLIGHT
+                    references: FLIGHT(FLIGHT_ID)
+              - column:
+                  name: CREATE_DATE
+                  type: date
+                  constraints:
+                    nullable: false
+              - column:
+                  name: UPDATE_DATE
+                  type: date
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: insert-pilot
+      author: bnaponiello
+      changes:
+        - insert:
+            tableName: PILOT
+            columns:
+              - column:
+                  name: PILOT_ID
+                  value: 1
+              - column:
+                  name: NAME
+                  value: "Santos Dummont"
+              - column:
+                  name: NATIONAL_ORIGIN
+                  value: "Brazil"
+              - column:
+                  name: LICENSE
+                  value: "AAABBBC1122"
+              - column:
+                  name: EMAIL
+                  value: "dummont@email.com.br"
+              - column:
+                  name: FLIGHT_HOURS
+                  value: 380
+              - column:
+                  name: FLIGHT_ID
+                  value: 1
+              - column:
+                  name: CREATE_DATE
+                  value: ${now}
+              - column:
+                  name: UPDATE_DATE
+                  value: ${now}
+        - insert:
+            tableName: PILOT
+            columns:
+              - column:
+                  name: PILOT_ID
+                  value: 2
+              - column:
+                  name: NAME
+                  value: "Fernando Pessoa"
+              - column:
+                  name: NATIONAL_ORIGIN
+                  value: "Portugal"
+              - column:
+                  name: LICENSE
+                  value: "CDWEAS123"
+              - column:
+                  name: EMAIL
+                  value: "fernandopessoa@email.pt"
+              - column:
+                  name: FLIGHT_HOURS
+                  value: 380
+              - column:
+                  name: FLIGHT_ID
+                  value: 2
+              - column:
+                  name: CREATE_DATE
+                  value: ${now}
+              - column:
+                  name: UPDATE_DATE
+                  value: ${now}
+        - insert:
+            tableName: PILOT
+            columns:
+              - column:
+                  name: PILOT_ID
+                  value: 3
+              - column:
+                  name: NAME
+                  value: "Dan Brown"
+              - column:
+                  name: NATIONAL_ORIGIN
+                  value: "United States"
+              - column:
+                  name: LICENSE
+                  value: "AABBCCDD123"
+              - column:
+                  name: EMAIL
+                  value: "danbrown@email.com"
+              - column:
+                  name: FLIGHT_HOURS
+                  value: 380
+              - column:
+                  name: FLIGHT_ID
+                  value: 3
+              - column:
+                  name: CREATE_DATE
+                  value: ${now}
+              - column:
+                  name: UPDATE_DATE
+                  value: ${now}
+        - insert:
+            tableName: PILOT
+            columns:
+              - column:
+                  name: PILOT_ID
+                  value: 4
+              - column:
+                  name: NAME
+                  value: "Vicent Dornes"
+              - column:
+                  name: NATIONAL_ORIGIN
+                  value: "France"
+              - column:
+                  name: LICENSE
+                  value: "FFBBCCDD123"
+              - column:
+                  name: EMAIL
+                  value: "vicent@email.fr"
+              - column:
+                  name: FLIGHT_HOURS
+                  value: 123
+              - column:
+                  name: FLIGHT_ID
+                  value: 4
+              - column:
+                  name: CREATE_DATE
+                  value: ${now}
+              - column:
+                  name: UPDATE_DATE
+                  value: ${now}
+        - insert:
+            tableName: PILOT
+            columns:
+              - column:
+                  name: PILOT_ID
+                  value: 5
+              - column:
+                  name: NAME
+                  value: "Caroline Marsseile"
+              - column:
+                  name: NATIONAL_ORIGIN
+                  value: "Argentina"
+              - column:
+                  name: LICENSE
+                  value: "RRBKCCDD121"
+              - column:
+                  name: EMAIL
+                  value: "carolinem@email.arg"
+              - column:
+                  name: FLIGHT_HOURS
+                  value: 933
+              - column:
+                  name: FLIGHT_ID
+                  value: 5
+              - column:
+                  name: CREATE_DATE
+                  value: ${now}
+              - column:
+                  name: UPDATE_DATE
+                  value: ${now}
+        - insert:
+            tableName: PILOT
+            columns:
+              - column:
+                  name: PILOT_ID
+                  value: 6
+              - column:
+                  name: NAME
+                  value: "Felipe Massa"
+              - column:
+                  name: NATIONAL_ORIGIN
+                  value: "Brasil"
+              - column:
+                  name: LICENSE
+                  value: "BRBBCCDD133"
+              - column:
+                  name: EMAIL
+                  value: "danbrown@email.com"
+              - column:
+                  name: FLIGHT_HOURS
+                  value: 664
+              - column:
+                  name: FLIGHT_ID
+                  value: 6
+              - column:
+                  name: CREATE_DATE
+                  value: ${now}
+              - column:
+                  name: UPDATE_DATE
+                  value: ${now}
+        - insert:
+            tableName: PILOT
+            columns:
+              - column:
+                  name: PILOT_ID
+                  value: 7
+              - column:
+                  name: NAME
+                  value: "Amanda Silva"
+              - column:
+                  name: NATIONAL_ORIGIN
+                  value: "Brazil"
+              - column:
+                  name: LICENSE
+                  value: "BRBBCCDD123"
+              - column:
+                  name: EMAIL
+                  value: "amanda@email.com.br"
+              - column:
+                  name: FLIGHT_HOURS
+                  value: 214
+              - column:
+                  name: FLIGHT_ID
+                  value: 7
+              - column:
+                  name: CREATE_DATE
+                  value: ${now}
+              - column:
+                  name: UPDATE_DATE
+                  value: ${now}

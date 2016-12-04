@@ -1,0 +1,79 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-aircraft-table
+      author: bnaponiello
+      changes:
+        - createTable:
+            tableName: AIRLINE
+            columns:
+              - column:
+                  name: AIRLINE_ID
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: NAME
+                  type: varchar(500)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: CREATE_DATE
+                  type: date
+                  constraints:
+                    nullable: false
+              - column:
+                  name: UPDATE_DATE
+                  type: date
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: insert-airlines
+      author: bnaponiello
+      changes:
+        - insert:
+            tableName: AIRLINE
+            columns:
+              - column:
+                  name: AIRLINE_ID
+                  value: 1
+              - column:
+                  name: NAME
+                  value: "LATAM Airlines"
+              - column:
+                  name: CREATE_DATE
+                  value: ${now}
+              - column:
+                  name: UPDATE_DATE
+                  value: ${now}
+        - insert:
+            tableName: AIRLINE
+            columns:
+              - column:
+                  name: AIRLINE_ID
+                  value: 2
+              - column:
+                  name: NAME
+                  value: "American Airlines"
+              - column:
+                  name: CREATE_DATE
+                  value: ${now}
+              - column:
+                  name: UPDATE_DATE
+                  value: ${now}
+        - insert:
+            tableName: AIRLINE
+            columns:
+              - column:
+                  name: AIRLINE_ID
+                  value: 3
+              - column:
+                  name: NAME
+                  value: "Air France"
+              - column:
+                  name: CREATE_DATE
+                  value: ${now}
+              - column:
+                  name: UPDATE_DATE
+                  value: ${now}

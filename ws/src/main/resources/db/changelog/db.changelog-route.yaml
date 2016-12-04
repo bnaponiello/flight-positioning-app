@@ -1,0 +1,149 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-route-table
+      author: bnaponiello
+      changes:
+        - createTable:
+            tableName: ROUTE
+            columns:
+              - column:
+                  name: ROUTE_ID
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: DEPARTURE_AIRPORT_ID
+                  type: int
+                  constraints:
+                    nullable: false
+                    foreignKeyName: FK_ROUTE_DEPARTURE_AIRPORT
+                    references: AIRPORT(AIRPORT_ID)
+              - column:
+                  name: ARRIVAL_AIRPORT_ID
+                  type: int
+                  constraints:
+                    nullable: false
+                    foreignKeyName: FK_ROUTE_ARRIVAL_AIRPORT
+                    references: AIRPORT(AIRPORT_ID)
+              - column:
+                  name: DEPARTURE_DATE
+                  type: date
+                  constraints:
+                    nullable: false
+              - column:
+                  name: ARRIVAL_DATE
+                  type: date
+                  constraints:
+                    nullable: false
+              - column:
+                  name: CREATE_DATE
+                  type: date
+                  constraints:
+                    nullable: false
+              - column:
+                  name: UPDATE_DATE
+                  type: date
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: insert-route
+      author: bnaponiello
+      changes:
+        - insert:
+            tableName: ROUTE
+            columns:
+              - column:
+                  name: ROUTE_ID
+                  value: 1
+              - column:
+                  name: DEPARTURE_AIRPORT_ID
+                  value: 1
+              - column:
+                  name: ARRIVAL_AIRPORT_ID
+                  value: 2
+              - column:
+                  name: DEPARTURE_DATE
+                  value: ${now}
+              - column:
+                  name: ARRIVAL_DATE
+                  value: ${now}
+              - column:
+                  name: CREATE_DATE
+                  value: ${now}
+              - column:
+                  name: UPDATE_DATE
+                  value: ${now}
+        - insert:
+            tableName: ROUTE
+            columns:
+              - column:
+                  name: ROUTE_ID
+                  value: 2
+              - column:
+                  name: DEPARTURE_AIRPORT_ID
+                  value: 2
+              - column:
+                  name: ARRIVAL_AIRPORT_ID
+                  value: 1
+              - column:
+                  name: DEPARTURE_DATE
+                  value: ${now}
+              - column:
+                  name: ARRIVAL_DATE
+                  value: ${now}
+              - column:
+                  name: CREATE_DATE
+                  value: ${now}
+              - column:
+                  name: UPDATE_DATE
+                  value: ${now}
+        - insert:
+            tableName: ROUTE
+            columns:
+              - column:
+                  name: ROUTE_ID
+                  value: 3
+              - column:
+                  name: DEPARTURE_AIRPORT_ID
+                  value: 1
+              - column:
+                  name: ARRIVAL_AIRPORT_ID
+                  value: 3
+              - column:
+                  name: DEPARTURE_DATE
+                  value: ${now}
+              - column:
+                  name: ARRIVAL_DATE
+                  value: ${now}
+              - column:
+                  name: CREATE_DATE
+                  value: ${now}
+              - column:
+                  name: UPDATE_DATE
+                  value: ${now}
+        - insert:
+            tableName: ROUTE
+            columns:
+              - column:
+                  name: ROUTE_ID
+                  value: 4
+              - column:
+                  name: DEPARTURE_AIRPORT_ID
+                  value: 4
+              - column:
+                  name: ARRIVAL_AIRPORT_ID
+                  value: 2
+              - column:
+                  name: DEPARTURE_DATE
+                  value: ${now}
+              - column:
+                  name: ARRIVAL_DATE
+                  value: ${now}
+              - column:
+                  name: CREATE_DATE
+                  value: ${now}
+              - column:
+                  name: UPDATE_DATE
+                  value: ${now}

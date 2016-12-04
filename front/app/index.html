@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html ng-app="flightPositioning">
+    <head>
+        <title>Flight Positioning</title>
+        <link rel="stylesheet" type="text/css" href="lib/bootstrap/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="css/layout.css">
+        <script src="lib/angular/angular.js"></script>
+        <script src="lib/jquery/jquery-3.1.1.min.js"></script>
+        <script src="lib/bootstrap/bootstrap.js"></script>
+        <script src="lib/moment/moment.js"></script>
+        <script src="js/app.js"></script>
+        <script src="js/controller/flightListController.js"></script>
+        <script src="js/service/flightsApiService.js"></script>
+        <script src="js/value/parameters.js"></script>
+    </head>
+    <body ng-controller="flightListController">
+        <div class="jumbotron">
+            <h3>{{app}}</h3>
+            <div class="row">
+                <div class="col-sm-8"><input class="form-control" type="text" ng-model="flightRequest.airlineName" placeholder="Linha Áerea"/></div>
+                <div class="col-sm-8"><input class="form-control" type="text" ng-model="flightRequest.ident" placeholder="Identificação do vôo"/></div>
+                <div class="col-sm-4"><button class="btn btn-primary btn-block" ng-click="findFlights(flightRequest)">Filtrar Vôos</button></div>
+            </div>
+            <table class="table table-striped">
+                <tr>
+                    <th>Linha aérea</th>
+                    <th>Identificação</th>
+                    <th>Aeronave</th>
+                    <th>Piloto(s)</th>
+                    <th>Status</th>
+                    <th>Origem</th>
+                    <th>Destino</th>
+                    <th>Partida</th>
+                    <th>Chegada</th>
+                    <th></th>
+                </tr>
+                <tr class="small-text" ng-repeat="flight in flights">
+                    <td>{{flight.airline.name}}</td>
+                    <td>{{flight.ident}}</td>
+                    <td>{{flight.aircraft.name}}</td>
+                    <td>{{flight.pilots[0].name}}</td>
+                    <td>{{flight.currentFlightStatus}}</td>
+                    <td>{{flight.route.departureAirport.city}}</td>
+                    <td>{{flight.route.arrivalAirport.city}}</td>
+                    <td>{{formatDateInDateAndHours(flight.route.departureDate)}}</td>
+                    <td>{{formatDateInDateAndHours(flight.route.arrivalDate)}}</td>
+                    <td>
+                        <button class="btn btn-info btn-block btn-xs" ng-click="findFlightByFlightId(flight.flightId)" data-toggle="modal" data-target="#flightDetailModal">info</button>
+                    </td>
+                </tr>
+            </table>
+            Desenvolvido por Bruno N.
+        </div>
+        <!-- FLIGHT MODAL -->
+        <div id="flightDetailModal" class="modal fade" role="dialog">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h3 class="modal-title">Detalhes do vôo: {{currentFlight.ident}}</h3>
+                    </div>
+                    <div class="modal-body">
+                        <p><b>Identificação do vôo:</b> {{currentFlight.ident}}</p>
+                        <p><b>Linha aérea:</b> {{currentFlight.airline.name}}</p>
+                        <p><b>Situação atual:</b> {{currentFlight.currentFlightStatus}}</p>
+                        <hr>
+                        <p><h4>Piloto(s)</h4></p>
+                        <div ng-repeat="pilot in currentFlight.pilots">
+                            <div class="row">
+                                <div class="col-sm-4"><b>Nome:</b> {{pilot.name}}</div>
+                                <div class="col-sm-4"><b>Nacionalidade:</b> {{pilot.nationalOrigin}}</div>
+                                <div class="col-sm-4"><b>Brevê:</b> {{pilot.license}}</div>
+                                <div class="col-sm-4"><b>E-mail:</b> {{pilot.email}}</div>
+                                <div class="col-sm-8"><b>Experiência (horas de vôo):</b> {{pilot.flightHours}}</div>
+                            </div>
+                        </div>
+                        <hr>
+                        <p><h4>Aeronave</h4></p>
+                        <div class="row">
+                            <div class="col-sm-4"><b>Nome:</b> {{currentFlight.aircraft.name}}</div>
+                            <div class="col-sm-4"><b>Ano de fabricação:</b> {{currentFlight.aircraft.year}}</div>
+                            <div class="col-sm-4"><b>Capacidade tanque:</b> {{currentFlight.aircraft.fuelCapacityInLitre}}L</div>
+                            <div class="col-sm-4"><b>Fabricado por:</b> {{currentFlight.aircraft.manufacturer}}</div>
+                            <div class="col-sm-8"><b>Origem:</b> {{currentFlight.aircraft.nationalOrigin}}</div>
+                        </div>
+                        <hr>
+                        <p><h4>Partida</h4></p>
+                        <div class="row">
+                            <div class="col-sm-4"><b>Aeroporto:</b> {{currentFlight.route.departureAirport.name}}</div>
+                            <div class="col-sm-4"><b>Código IATA:</b> {{currentFlight.route.departureAirport.code}}</div>
+                            <div class="col-sm-4"><b>Data de partida:</b> {{formatDate(currentFlight.route.departureDate)}}</div>
+                            <div class="col-sm-4"><b>Horário de partida:</b> {{formatDateInHours(currentFlight.route.departureDate)}}</div>
+                            <div class="col-sm-4"><b>Cidade:</b> {{currentFlight.route.departureAirport.city}}</div>
+                            <div class="col-sm-4"><b>Região:</b> {{currentFlight.route.departureAirport.region}}</div>
+                            <div class="col-sm-4"><b>País:</b> {{currentFlight.route.departureAirport.country}}</div>
+                        </div>
+                        <hr>
+                        <p><h4>Chegada</h4></p>
+                        <div class="row">
+                            <div class="col-sm-4"><b>Aeroporto:</b> {{currentFlight.route.arrivalAirport.name}}</div>
+                            <div class="col-sm-4"><b>Código IATA:</b> {{currentFlight.route.arrivalAirport.code}}</div>
+                            <div class="col-sm-4"><b>Data de chegada:</b> {{formatDate(currentFlight.route.arrivalDate)}}</div>
+                            <div class="col-sm-4"><b>Horário de chegada:</b> {{formatDateInHours(currentFlight.route.arrivalDate)}}</div>
+                            <div class="col-sm-4"><b>Cidade:</b> {{currentFlight.route.arrivalAirport.city}}</div>
+                            <div class="col-sm-4"><b>Região:</b> {{currentFlight.route.arrivalAirport.region}}</div>
+                            <div class="col-sm-4"><b>País:</b> {{currentFlight.route.arrivalAirport.country}}</div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END OF FLIGHT MODAL -->
+    </body>
+</html>

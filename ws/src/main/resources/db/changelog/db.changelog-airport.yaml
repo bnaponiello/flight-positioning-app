@@ -1,0 +1,160 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-airport-table
+      author: bnaponiello
+      changes:
+        - createTable:
+            tableName: AIRPORT
+            columns:
+              - column:
+                  name: AIRPORT_ID
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: CODE
+                  type: varchar(5)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: NAME
+                  type: varchar(500)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: CITY
+                  type: varchar(500)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: REGION
+                  type: varchar(300)
+              - column:
+                  name: COUNTRY
+                  type: varchar(300)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: CREATE_DATE
+                  type: date
+                  constraints:
+                    nullable: false
+              - column:
+                  name: UPDATE_DATE
+                  type: date
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: insert-airport
+      author: bnaponiello
+      changes:
+        - insert:
+            tableName: AIRPORT
+            columns:
+              - column:
+                  name: AIRPORT_ID
+                  value: 1
+              - column:
+                  name: CODE
+                  value: "FRA"
+              - column:
+                  name: NAME
+                  value: "Frankfurt Airport"
+              - column:
+                  name: CITY
+                  value: "Frankfurt"
+              - column:
+                  name: REGION
+                  value: "Hesse"
+              - column:
+                  name: COUNTRY
+                  value: "Germany"
+              - column:
+                  name: CREATE_DATE
+                  value: ${now}
+              - column:
+                  name: UPDATE_DATE
+                  value: ${now}
+        - insert:
+            tableName: AIRPORT
+            columns:
+              - column:
+                  name: AIRPORT_ID
+                  value: 2
+              - column:
+                  name: CODE
+                  value: "BSB"
+              - column:
+                  name: NAME
+                  value: "Brasília International Airport"
+              - column:
+                  name: CITY
+                  value: "Brasília"
+              - column:
+                  name: REGION
+                  value: "Distrito Federal"
+              - column:
+                  name: COUNTRY
+                  value: "Brazil"
+              - column:
+                  name: CREATE_DATE
+                  value: ${now}
+              - column:
+                  name: UPDATE_DATE
+                  value: ${now}
+        - insert:
+            tableName: AIRPORT
+            columns:
+              - column:
+                  name: AIRPORT_ID
+                  value: 3
+              - column:
+                  name: CODE
+                  value: "GRU"
+              - column:
+                  name: NAME
+                  value: "Guarulhos International Airport"
+              - column:
+                  name: CITY
+                  value: "São Paulo"
+              - column:
+                  name: REGION
+                  value: "São Paulo"
+              - column:
+                  name: COUNTRY
+                  value: "Brazil"
+              - column:
+                  name: CREATE_DATE
+                  value: ${now}
+              - column:
+                  name: UPDATE_DATE
+                  value: ${now}
+        - insert:
+            tableName: AIRPORT
+            columns:
+              - column:
+                  name: AIRPORT_ID
+                  value: 4
+              - column:
+                  name: CODE
+                  value: "JFK"
+              - column:
+                  name: NAME
+                  value: "John F. Kennedy International Airport"
+              - column:
+                  name: CITY
+                  value: "New York City"
+              - column:
+                  name: REGION
+                  value: "New York"
+              - column:
+                  name: COUNTRY
+                  value: "United States"
+              - column:
+                  name: CREATE_DATE
+                  value: ${now}
+              - column:
+                  name: UPDATE_DATE
+                  value: ${now}
