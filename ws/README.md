@@ -4,7 +4,7 @@ This is the webservice of the application "Flight Positioning App" (flight-posit
 
 ## REST Endpoints
 
-Following are list of the REST endpoints that can be called in order to test the application:
+Following are the list of the REST endpoints that can be called in order to test the application:
 
 ```
 (GET) http://{{domain}}/api/v1/flights
