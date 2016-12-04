@@ -1,6 +1,6 @@
 # Flight Positioning App
 
-This is the webservice of the application "Flight Positioning App" (flight-positioning-app), an application that gives accurate informations about flights around the globe.
+This is "Flight Positioning App" (flight-positioning-app), an application that gives accurate informations about flights around the globe.
 
 ## Documentation
 
