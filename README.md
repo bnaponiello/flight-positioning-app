@@ -19,5 +19,6 @@ In Webservice:
 - Spring MVC and Spring Boot;
 - RESTfull;
 - Maven;
-- MariaDB;
-- Mockito and PowerMock
+- MariaDB as the database (https://mariadb.org/);
+- Liquibase to generate the database, tables and data (http://www.liquibase.org/)
+- Mockito (http://site.mockito.org/), PowerMock (http://powermock.github.io/) and FixtureFactory (https://github.com/six2six/fixture-factory) in unit tests.
